@@ -28,6 +28,18 @@ typedef vector<ld> vld;
     #define dbug(args...)
 #endif
 
+void add( map<ll,ll> &m, ll x,ll cnt=1){
+    auto jt=m.find(x);
+    if(jt==m.end())	m.insert({x,cnt});
+    else	jt->S += cnt;
+}
+ 
+void del( map<ll,ll> &m, ll x,ll cnt=1){
+    auto jt=m.find(x);
+    if(jt->S<=cnt)	m.erase(jt);
+    else jt->S -= cnt;
+}
+
 ll powr(ll x, ll y, ll p) { 
     ll res = 1;x = x % p; 
     while (y > 0){
@@ -36,11 +48,44 @@ ll powr(ll x, ll y, ll p) {
     return res; 
 }
 
+
 const ll inf = 0xFFFFFFFFFFFFFFFL;
 const ll mod = 1000000007L;
-
+ll mo = 998244353;
 int main(){	
-	fastIO
-	
+//	fastIO
+	ll m, n, q;
+	cin>>m>>n>>q;
+	vll a(n);
+	rep(i,n)
+		cin>>a[i];
+	ll ways[m][n];
+	memset(ways, 0, m * sizeof(ways[0]));
+	rep(i,m)
+		ways[i][0] = powr(a[0], i+1, mo);
+
+	ways[0][0] = a[0];
+	repA(j, 1, n-1)
+		ways[0][j] = (a[j] * ways[0][j-1])%mo;
+
+	repA(i, 1, m-1){
+		repA(j, 1, n-1){
+			ways[i][j] = (a[j] * (ways[i-1][j] + ways[i][j-1]) % mo)%mo;
+		}
+	}
+//	rep(i,m){
+//		rep(j,n)
+//			cout<<ways[i][j]<<" ";
+//		cout<<endl;
+//	}
+
+	ll ans = 1;
+	while(q--){
+		ans = 0;
+		ll k;
+		cin>>k;
+		cout<<ways[k-1][n-1]<<endl;
+	}	
     return 0;
 }
+

@@ -14,7 +14,7 @@ using namespace std;
 #define F first
 #define S second
 #define endl "\n"
-
+#define pi 3.141592653589793238462643383279502884197169399375105820974944592307816406286
 typedef long long ll;
 typedef long double ld;
 typedef pair<ll,ll> pll;
@@ -39,8 +39,23 @@ ll powr(ll x, ll y, ll p) {
 const ll inf = 0xFFFFFFFFFFFFFFFL;
 const ll mod = 1000000007L;
 
+ld fun(ld theta, ld alpha){
+	return cos(theta + alpha) + cos(theta - alpha) + sin(theta - alpha);
+}
+
 int main(){	
 	fastIO
-	
+	ll t;
+	cin>>t;
+	while(t--){
+		ll n;
+		cin>>n;
+		n *= 2;
+
+		ld theta = pi/n;
+		cout<<fun(theta, 0);
+
+	}
     return 0;
 }
+

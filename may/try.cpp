@@ -22,11 +22,29 @@ typedef pair<ld,ld> pld;
 typedef vector<ll> vll;
 typedef vector<ld> vld;
 
+clock_t time_p=clock();
+void oktime(){
+	time_p = clock() - time_p;
+	cerr<<"Time Taken: "<<(float)(time_p)/CLOCKS_PER_SEC<<endl;
+}
+
 #ifdef DEBUG
 #include "/home/ash/.vim/debug.h"
 #else
     #define dbug(args...)
 #endif
+
+void add( map<ll,ll> &m, ll x,ll cnt=1){
+    auto jt=m.find(x);
+    if(jt==m.end())	m.insert({x,cnt});
+    else	jt->S += cnt;
+}
+ 
+void del( map<ll,ll> &m, ll x,ll cnt=1){
+    auto jt=m.find(x);
+    if(jt->S<=cnt)	m.erase(jt);
+    else jt->S -= cnt;
+}
 
 ll powr(ll x, ll y, ll p) { 
     ll res = 1;x = x % p; 
@@ -40,7 +58,17 @@ const ll inf = 0xFFFFFFFFFFFFFFFL;
 const ll mod = 1000000007L;
 
 int main(){	
-	fastIO
-	
+	//fastIO
+	ll t;
+	cin>>t;
+	while(t--){
+		ll x,y,l,r;
+		cin>>x>>y>>l>>r;
+		if(x*y==0)
+			cout<<0<<endl;
+		else
+		cout<<(x|y)<<endl;
+	}	
     return 0;
 }
+

@@ -40,7 +40,31 @@ const ll inf = 0xFFFFFFFFFFFFFFFL;
 const ll mod = 1000000007L;
 
 int main(){	
-	fastIO
-	
+	ll t;
+	cin>>t;
+	while(t--){
+		ll n;cin>>n;
+		vll a(n);
+		rep(i,n)
+			cin>>a[i];
+		sort(a.begin(), a.end());
+		map<ll, ll> sz;
+		ll cnt = 0;
+		ll cur = 0;
+		for(ll i = 0;i<n;i++){
+			dbug(i, cur);
+			while(cur < a[i]){
+				cur++;
+				break;
+			}
+			dbug(i, cur, cnt);
+			if(cur >= a[i]){
+				cnt++;
+				cur = 0;
+			}
+		}
+		cout<<cnt<<endl;
+	}	
     return 0;
 }
+

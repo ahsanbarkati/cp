@@ -40,7 +40,44 @@ const ll inf = 0xFFFFFFFFFFFFFFFL;
 const ll mod = 1000000007L;
 
 int main(){	
-	fastIO
-	
+//	fastIO
+	ll t;
+	cin>>t;
+	while(t--){
+		string s;
+		cin>>s;
+		ll n1 = -1;
+		ll n2 = -1;
+		ll n3 = -1;
+		ll ans = inf;
+		ll n = s.length();
+		rep(i, n){
+			if(s[i] == '1'){
+				if(n3 != -1 and n2 != -1){
+					if(ans > max( i - n2 + 1, i - n3 + 1))
+						ans = max( i - n2 + 1, i - n3 + 1);
+				}
+				n1 = i;
+			}
+			if(s[i] == '2'){
+				if(n1 != -1 and n3 != -1){
+					if(ans > max( i - n1 + 1, i - n3 + 1))
+						ans = max( i - n1 + 1, i - n3 + 1);
+				
+				}
+				n2 = i;
+			}
+			if(s[i] == '3'){
+				if(n1 != -1 and n2 != -1){
+					if(ans > max( i - n2 + 1, i - n1 + 1))
+						ans = max( i - n2 + 1, i - n1 + 1);
+				}
+				n3 = i;
+			}
+		}
+		if(ans == inf) ans = 0;
+		cout<<ans<<endl;
+	}	
     return 0;
 }
+

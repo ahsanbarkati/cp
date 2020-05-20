@@ -41,6 +41,21 @@ const ll mod = 1000000007L;
 
 int main(){	
 	fastIO
-	
+	ll n,s;
+	cin>>n>>s;
+
+	if(s < 2*n){
+		cout<<"NO"<<endl;
+	}
+	else{
+		cout<<"YES"<<endl;
+		rep(i,n-1){
+			cout<<2<<" ";
+		}
+		cout<<s - (n-1)*2<<endl;
+		cout<<1<<endl;
+	}
+
     return 0;
 }
+

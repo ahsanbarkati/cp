@@ -39,8 +39,75 @@ ll powr(ll x, ll y, ll p) {
 const ll inf = 0xFFFFFFFFFFFFFFFL;
 const ll mod = 1000000007L;
 
+
+void add(vll &bit, ll ind, ll val){
+	while(ind < bit.size()){
+		bit[ind] += val;	
+		ind += ind & (-ind);
+	}
+}
+
+ll sum(vll &bit, ll ind){
+	ll ans = 0;
+	while(ind > 0){
+		ans += bit[ind];
+		ind -= ind & (-ind);
+	}
+	return ans;
+}
+
+ll search(vll &bit, ll k, ll low, ll high){
+	ll mid;
+	while(low <= high){
+		mid = low + (high - low)/2;
+
+		if(sum(bit, mid) > k)
+			high = mid-1;
+
+		else if(sum(bit, mid) < k)
+			low = mid +1; 
+
+		else return mid;	
+	}
+
+	return mid;
+}
 int main(){	
 	fastIO
+	ll n, q, k;
+	cin>>n>>q;
+  	vll arr(n+1), bit(n+1);
+	rep(i,n+1){
+		bit[i] = 0;
+	}
+
+	ll tmp;
+	rep(i,n){
+		cin>>tmp;
+		add(bit, tmp, 1);
+	}
+	dbug(bit);
 	
-    return 0;
+	while(q--){
+		cin>>k;
+		if(k < 0){	// remove
+			k *= -1;
+			dbug(search(bit, k, 1,n));
+			add(bit, search(bit, k, 1, n), -1);
+		}
+		else {
+			add(bit, search(bit, k, 1, n), 1);
+		}
+	}
+	dbug(bit);
+	ll ans = 0;
+	rep(i, n+1)
+		if(bit[i] != 0){
+			ans = i;
+			break;
+		}
+
+	cout<<ans<<endl;
+	return 0;
 }
+

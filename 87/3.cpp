@@ -14,7 +14,7 @@ using namespace std;
 #define F first
 #define S second
 #define endl "\n"
-
+#define pi 3.141592653589793238462643383279502884197169399375105820974944592307816406286
 typedef long long ll;
 typedef long double ld;
 typedef pair<ll,ll> pll;
@@ -41,6 +41,14 @@ const ll mod = 1000000007L;
 
 int main(){	
 	fastIO
-	
+	ll t;
+	cin>>t;
+	while(t--){
+		ll n;
+		cin>>n;
+		ld ans = 1/tan(pi/(2*n));
+		cout<<setprecision(8)<<ans<<endl;
+	}
     return 0;
 }
+

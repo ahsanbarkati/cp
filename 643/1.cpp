@@ -39,8 +39,36 @@ ll powr(ll x, ll y, ll p) {
 const ll inf = 0xFFFFFFFFFFFFFFFL;
 const ll mod = 1000000007L;
 
+ll fun(ll n){
+	vll digs;
+	while(n){
+		digs.pb(n%10);
+		n/=10;
+	}
+	return (*min_element(digs.begin(), digs.end())) * (*max_element(digs.begin(), digs.end()));
+}
+
 int main(){	
 	fastIO
+	ll n, k;
+	ll t;
+	cin>>t;
+	while(t--){
+	cin>>n>>k;
 	
+	bool wow = false;
+	rep(i,k-1){
+		ll a = n;
+		while(a){
+			if(a%10 == 0)
+				wow = true;
+			a/=10;
+		}
+		if(wow) break;
+		n = n + fun(n);
+	}
+	cout<<n<<endl;
+	}
     return 0;
 }
+

@@ -40,7 +40,27 @@ const ll inf = 0xFFFFFFFFFFFFFFFL;
 const ll mod = 1000000007L;
 
 int main(){	
-	fastIO
-	
+	//fastIO
+	ll t;
+	cin>>t;
+	while(t--){
+		ll a,b,c,d;
+		cin>>a>>b>>c>>d;
+		ll ans = -1;
+		if(b >= a){
+			ans = b;
+		}
+		else if(d < c){	// b < a
+			ans = 0;
+			ans += b;
+			a -= b;
+			if(a > 0){ // can sleep before alarm
+				ans += c * ceil((double)a / (c-d));
+				//a -= c-d;
+			}
+		}
+		cout<<ans<<endl;
+	}
     return 0;
 }
+

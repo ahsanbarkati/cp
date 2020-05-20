@@ -40,7 +40,18 @@ const ll inf = 0xFFFFFFFFFFFFFFFL;
 const ll mod = 1000000007L;
 
 int main(){	
-	fastIO
-	
+	//fastIO
+	ll a,b,c,d;
+	cin>>a>>b>>c>>d;
+	ll ans = 0;
+	for(int x = a; x<= b;x++){
+		for(int y = b; y <=c; y++){
+			if(x+y > c and x + y <=d){
+				ans += x + y - c;
+			}
+		}
+	}
+	cout<<ans<<endl;
     return 0;
 }
+

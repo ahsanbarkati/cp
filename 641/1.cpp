@@ -28,6 +28,18 @@ typedef vector<ld> vld;
     #define dbug(args...)
 #endif
 
+void add( map<ll,ll> &m, ll x,ll cnt=1){
+    auto jt=m.find(x);
+    if(jt==m.end())	m.insert({x,cnt});
+    else	jt->S += cnt;
+}
+ 
+void del( map<ll,ll> &m, ll x,ll cnt=1){
+    auto jt=m.find(x);
+    if(jt->S<=cnt)	m.erase(jt);
+    else jt->S -= cnt;
+}
+
 ll powr(ll x, ll y, ll p) { 
     ll res = 1;x = x % p; 
     while (y > 0){
@@ -41,6 +53,28 @@ const ll mod = 1000000007L;
 
 int main(){	
 	fastIO
+	ll t;
+	cin>>t;
+	while(t--){
+		ll n,k;
+		cin>>n>>k;
+		ll ans;
+		if(n%2 == 0){
+			ans = n + 2*(k);
+		}
+		if(n%2 == 1){
+			ll j = 2;
+			for(j = 2;j<=n;j++){
+				if(n%j == 0)
+					break;
+			}
+			dbug(j);
+			ans = n + j + (k-1)*2;
+		}
+	
+		cout<<ans<<endl;
+	}
 	
     return 0;
 }
+

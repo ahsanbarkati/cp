@@ -28,6 +28,18 @@ typedef vector<ld> vld;
     #define dbug(args...)
 #endif
 
+void add( map<ll,ll> &m, ll x,ll cnt=1){
+    auto jt=m.find(x);
+    if(jt==m.end())	m.insert({x,cnt});
+    else	jt->S += cnt;
+}
+ 
+void del( map<ll,ll> &m, ll x,ll cnt=1){
+    auto jt=m.find(x);
+    if(jt->S<=cnt)	m.erase(jt);
+    else jt->S -= cnt;
+}
+
 ll powr(ll x, ll y, ll p) { 
     ll res = 1;x = x % p; 
     while (y > 0){
@@ -44,3 +56,4 @@ int main(){
 	
     return 0;
 }
+
